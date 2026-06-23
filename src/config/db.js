@@ -28,7 +28,7 @@ const connectDB = async()=>{
 
         await client.connect();
 
-        database = client.db("foodDeliveryDB");
+        database = client.db("taskManager");
 
 
         console.log("MongoDB connected");
