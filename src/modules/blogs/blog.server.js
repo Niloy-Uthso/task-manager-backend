@@ -1,5 +1,4 @@
-// backend/src/modules/blogs/blog.server.js
-import { database } from '../../config/db.js';
+ import { database } from '../../config/db.js';
 import { ObjectId } from 'mongodb';
 
 const getAllBlogsFromDB = async () => {

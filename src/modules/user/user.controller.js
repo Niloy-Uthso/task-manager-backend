@@ -1,5 +1,4 @@
-// backend/src/modules/users/users.controller.js
-
+ 
 import { userServer } from "./user.server.js";
 
  
@@ -7,8 +6,7 @@ import { userServer } from "./user.server.js";
     try {
         const { uid, name, email, photoURL } = req.body;
 
-        // Validate required fields
-        if (!uid || !name || !email) {
+         if (!uid || !name || !email) {
             return res.status(400).json({
                 success: false,
                 message: 'Missing required fields: uid, name, email'
@@ -41,6 +39,25 @@ import { userServer } from "./user.server.js";
     }
 };
 
+const getAllUsers = async (req, res) => {
+    try {
+        const users = await userServer.getAllUsersFromDB();
+
+        return res.status(200).json({
+            success: true,
+            data: users
+        });
+
+    } catch (error) {
+        console.error('Get users error:', error);
+        return res.status(500).json({
+            success: false,
+            message: 'Internal server error'
+        });
+    }
+};
+
 export const userController ={
-    registerUser
+    registerUser,
+    getAllUsers
 }

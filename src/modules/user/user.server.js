@@ -1,13 +1,11 @@
-// backend/src/modules/users/user.server.js
-import { database } from '../../config/db.js';
+ import { database } from '../../config/db.js';
 
  const createUser = async (userData) => {
     const { uid, name, email, photoURL } = userData;
 
     const usersCollection = database.collection("users");
 
-    // Check if user already exists
-    const existingUser = await usersCollection.findOne({
+     const existingUser = await usersCollection.findOne({
         $or: [{ uid }, { email }]
     });
 
@@ -15,8 +13,7 @@ import { database } from '../../config/db.js';
         throw new Error('User already exists');
     }
 
-    // Create new user
-    const newUser = {
+     const newUser = {
         uid,
         name,
         email,
@@ -33,9 +30,20 @@ import { database } from '../../config/db.js';
     return newUser;
 };
 
+const getAllUsersFromDB = async () => {
+    const usersCollection = database.collection("users");
+    
+    const users = await usersCollection
+        .find({})
+        .sort({ createdAt: -1 })
+        .toArray();
+    
+    return users;
+};
+
 export const userServer=
  { 
     createUser, 
-     
+     getAllUsersFromDB
     
     };

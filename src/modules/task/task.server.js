@@ -5,7 +5,7 @@ import { database } from "../../config/db.js";
  
  const createTaskInDB = async (taskData) => {
     const tasksCollection = database.collection('tasks');
-
+console.log("server shihfsoidfsdf",taskData)
     const newTask = {
         ...taskData,
         createdAt: new Date(taskData.createdAt),
@@ -32,8 +32,7 @@ const getAllTasksFromDB = async (userId) => {
     return tasks;
 };
 
-// Add this function
-const getTaskByIdFromDB = async (taskId, userId) => {
+ const getTaskByIdFromDB = async (taskId, userId) => {
     const tasksCollection = database.collection('tasks');
     
     if (!ObjectId.isValid(taskId)) {
@@ -52,8 +51,7 @@ const getTaskByIdFromDB = async (taskId, userId) => {
     return task;
 };
 
-// Add this function
-const updateTaskInDB = async (taskId, userId, updateData) => {
+ const updateTaskInDB = async (taskId, userId, updateData) => {
     const tasksCollection = database.collection('tasks');
 
     if (!ObjectId.isValid(taskId)) {

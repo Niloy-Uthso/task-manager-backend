@@ -1,5 +1,4 @@
-// backend/src/modules/blogs/blog.controller.js
-import { blogServer } from './blog.server.js';
+ import { blogServer } from './blog.server.js';
 
 const getAllBlogs = async (req, res) => {
     try {

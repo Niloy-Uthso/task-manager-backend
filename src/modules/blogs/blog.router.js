@@ -1,5 +1,4 @@
-// backend/src/modules/blogs/blog.router.js
-import express from 'express';
+ import express from 'express';
 import { blogController } from './blog.controller.js';
 
 const router = express.Router();

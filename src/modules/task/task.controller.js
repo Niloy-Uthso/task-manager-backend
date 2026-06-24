@@ -1,19 +1,19 @@
-// backend/src/modules/tasks/task.controller.js
-import {  taskServer } from './task.server.js';
+ import {  taskServer } from './task.server.js';
 
  const createTask = async (req, res) => {
     try {
-        const { title, description, status, userId, userEmail } = req.body;
+        const { title, description, status, userId, userEmail,createdAt } = req.body;
 
-        // Validate required fields
-        if (!title || !description || !status || !userId) {
+         if (!title || !description || !status || !userId) {
             return res.status(400).json({
                 success: false,
                 message: 'Missing required fields: title, description, status, userId'
             });
         }
 
-        const taskData = { title, description, status, userId, userEmail };
+        const taskData = { title, description, status, userId, userEmail,createdAt };
+        console.log("shihfsoidfsdf",taskData)
+
         const newTask = await taskServer.createTaskInDB(taskData);
 
         return res.status(201).json({
@@ -58,8 +58,7 @@ const getAllTasks = async (req, res) => {
     }
 };
 
-// Add this function
-const getTaskById = async (req, res) => {
+ const getTaskById = async (req, res) => {
     try {
         const { id } = req.params;
         const { userId } = req.query;
@@ -95,8 +94,7 @@ const getTaskById = async (req, res) => {
     }
 };
 
-// Add this function
-const updateTask = async (req, res) => {
+ const updateTask = async (req, res) => {
     try {
         const { id } = req.params;
         const { title, description, status, userId } = req.body;

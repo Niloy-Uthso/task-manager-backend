@@ -26,7 +26,7 @@ const connectDB = async()=>{
 
     try{
 
-        await client.connect();
+        // await client.connect();
 
         database = client.db("taskManager");
 
